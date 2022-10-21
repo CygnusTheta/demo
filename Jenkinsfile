@@ -1,22 +1,10 @@
-pipeline{
-    agent any
-    stages("build"){
-        steps{
-            echo 'build'
-            mvn compile
+pipeline { 
+    agent any  
+    stages { 
+        stage('Build') { 
+            steps { 
+               echo 'This is a minimal pipeline.' 
+            }
         }
     }
-    stages("test"){
-        steps{
-              echo 'test'
-        }
-    }
-    stages("deploy"){
-        steps{
-              echo 'deploy'
-        }
-    }
-
-
-
 }
