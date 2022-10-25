@@ -1,3 +1,5 @@
 target/demo-1.0-SNAPSHOT.jar
 target/classes/com/maventest/test/App.class
 target/test-classes/com/maventest/test/AppTest.class
+target/surefire-reports/com.maventest.test.AppTest.txt
+target/surefire-reports/com.maventest.test.AppTest.txt
