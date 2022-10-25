@@ -25,5 +25,14 @@ pipeline {
                 }
             }
         }
+
+        stage ('Create Container') {
+            steps {
+                sh '''
+                docker build -t testing2:latest .
+                '''
+            }
+        }
+
     }
 }
