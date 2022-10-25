@@ -8,7 +8,7 @@ pipeline {
 	environment {
 		CredentialsId="d1cdcc3d-8ee2-4906-94f8-d76998ec48b7"
 		//GitUrl="ssh://git@aerosource2.aero.org:7999/wgllkr/import-cli.git"
-		DockerImage=getDockerImage()
+		//DockerImage=getDockerImage()
 
 		//BucketName="swagr-import-cli"
 		//Region="us-east-1"
