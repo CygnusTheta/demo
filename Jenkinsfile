@@ -50,8 +50,8 @@ pipeline {
             steps {
                  withDockerRegistry(registry: [url: "https://hub.docker.com/", credentialsId: 'dockerid']) {
                 sh '''
-                        echo ${env.DockerImage}
-                        docker push ${env.DockerImage}
+                        echo ${dockerid}
+                        docker push testing2:latest
 
                 '''
                  }
