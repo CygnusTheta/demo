@@ -4,6 +4,17 @@ pipeline {
        // maven 'Maven 3.8.6'
         //jdk 'jdk19'
    // }
+
+	environment {
+		CredentialsId="d1cdcc3d-8ee2-4906-94f8-d76998ec48b7"
+		//GitUrl="ssh://git@aerosource2.aero.org:7999/wgllkr/import-cli.git"
+		DockerImage=getDockerImage()
+		VersionedDockerImage = getVersionedDockerImage(params.VERSION)
+		//BucketName="swagr-import-cli"
+		//Region="us-east-1"
+		//JarFileName="import-cli.jar"
+	}
+
     stages {
         stage ('Initialize') {
             steps {
@@ -31,6 +42,17 @@ pipeline {
             steps {
                 sh '''
                 docker build --progress=plain -t testing2:latest .
+                '''
+            }
+        }
+
+        stage ('Publish Container') {
+            steps {
+                sh '''
+                        echo ${env.DockerImage}
+                        echo ${env.VersionedDockerImage}
+                        docker push ${env.DockerImage}
+						docker push ${env.VersionedDockerImage}
                 '''
             }
         }
