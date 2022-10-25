@@ -48,11 +48,11 @@ pipeline {
 
         stage ('Publish Container') {
             steps {
+                 withDockerRegistry(registry: [url: "https://hub.docker.com/", credentialsId: 'dockerid']) {
                 sh '''
                         echo ${env.DockerImage}
-                        echo ${env.VersionedDockerImage}
                         docker push ${env.DockerImage}
-						docker push ${env.VersionedDockerImage}
+
                 '''
             }
         }
