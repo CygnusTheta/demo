@@ -54,6 +54,7 @@ pipeline {
                         docker push ${env.DockerImage}
 
                 '''
+                 }
             }
         }
 
