@@ -50,11 +50,7 @@ pipeline {
             steps {
                  withDockerRegistry(registry: [url: "https://registry.hub.docker.com:", credentialsId: 'dockerid']) {
 
-                                //build image
-            def customImage = docker.build("ericwarriner/test:latest")
-
-            //push image
-            customImage.push()
+   pushDockerImage()
 
                  }
             }
