@@ -49,12 +49,13 @@ pipeline {
         stage ('Publish Container') {
             steps {
                  withDockerRegistry(registry: [url: "https://registry.hub.docker.com:", credentialsId: 'dockerid']) {
-                sh '''
-                        echo ${dockerid}
-                        echo 'Docker PUSH ECHO'
-                        docker push ericwarriner/test:latest
 
-                '''
+                                //build image
+            def customImage = docker.build("ericwarriner/test:latest")
+
+            //push image
+            customImage.push()
+
                  }
             }
         }
