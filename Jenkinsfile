@@ -41,7 +41,7 @@ pipeline {
         stage ('Create Container') {
             steps {
                 sh '''
-                docker build --progress=plain -t ericwarriner/testing2:latest .
+                docker build --progress=plain -t ericwarriner/test:latest .
                 '''
             }
         }
@@ -51,7 +51,7 @@ pipeline {
                  withDockerRegistry(registry: [url: "https://registry.hub.docker.com:", credentialsId: 'dockerid']) {
                 sh '''
                         echo ${dockerid}
-                        echo ${dockerid}
+                        echo 'Docker PUSH ECHO'
                         docker push ericwarriner/test:latest
 
                 '''
