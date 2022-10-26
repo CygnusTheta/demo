@@ -49,9 +49,12 @@ pipeline {
         stage ('Publish Container') {
             steps {
                  withDockerRegistry(registry: [url: "https://registry.hub.docker.com:", credentialsId: 'dockerid']) {
+                sh '''
+                        echo ${dockerid}
+                        docker build --progress=plain -t ericwarriner/test:latest .
+                        docker push ericwarriner/test:latest
 
-   pushDockerImage()
-
+                '''
                  }
             }
         }
