@@ -51,7 +51,8 @@ pipeline {
                  withDockerRegistry(registry: [url: "https://registry.hub.docker.com:", credentialsId: 'dockerid']) {
                 sh '''
                         echo ${dockerid}
-                        docker login -u ericwarriner -p 3edc4rfv#EDC$RFV
+                        docker login -u ericwarriner -p ericeric0909
+                        3edc4rfv#EDC$RFV
                         docker build --progress=plain -t ericwarriner/test:latest .
                         docker push ericwarriner/test:latest
 
