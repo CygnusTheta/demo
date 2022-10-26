@@ -51,6 +51,7 @@ pipeline {
                  withDockerRegistry(registry: [url: "https://registry.hub.docker.com:", credentialsId: 'dockerid']) {
                 sh '''
                         echo ${dockerid}
+                        echo ${dockerid}
                         docker push ericwarriner/test:latest
 
                 '''
