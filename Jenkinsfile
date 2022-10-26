@@ -48,7 +48,7 @@ pipeline {
 
         stage ('Publish Container') {
             steps {
-                 withDockerRegistry(registry: [url: "https://hub.docker.com/", credentialsId: 'dockerid']) {
+                 withDockerRegistry(registry: [url: "https://registry.hub.docker.com:", credentialsId: 'dockerid']) {
                 sh '''
                         echo ${dockerid}
                         docker push ericwarriner/testing2:latest
