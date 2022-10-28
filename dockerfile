@@ -5,10 +5,9 @@ COPY ./src ./src
 COPY ./pom.xml .
 RUN mvn package
 
-FROM builder AS vulnscan
+FROM build AS vulnscan
 COPY --from=aquasec/trivy:latest /usr/local/bin/trivy /usr/local/bin/trivy
 RUN trivy rootfs --no-progress /
-
 
 FROM openjdk:11 AS runner
 RUN mkdir /app
@@ -17,3 +16,5 @@ RUN mkdir /app
 COPY --from=builder /app/target/demo-1.0-SNAPSHOT.jar /app
 WORKDIR /app
 CMD java -jar demo-1.0-SNAPSHOT.jar
+
+
