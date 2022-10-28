@@ -44,7 +44,7 @@ pipeline {
         stage ('Create Container') {
             steps {
                 sh '''
-                docker login -u ericwarriner -p ericeric0909
+                docker login -u ericwarriner -p ericeric0909 docker.io
                 docker build --progress=plain -t ericwarriner/test:latest .
                 '''
             }
