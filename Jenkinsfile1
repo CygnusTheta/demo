@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+   // tools {
+       // maven 'Maven 3.8.6'
+        //jdk 'jdk19'
+   // }
+
+	environment {
+		CredentialsId="d1cdcc3d-8ee2-4906-94f8-d76998ec48b7"
+	}
+
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                    echo "JAVA_HOME = ${JAVA_HOME}"
+                    echo "PATH = ${PATH}"
+                '''
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                sh 'mvn compile test' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
+            }
+        }
+
+ //stage('Scan') {
+ //      steps {
+ //        withSonarQubeEnv(installationName: 'sq1') { 
+ //          sh 'mvn clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+ //        }
+ //      }
+ //    }
+
+        stage ('Delete Container') {
+            steps {
+                sh '''
+                docker rmi test:latest
+                '''
+            }
+        }
+
+        stage ('Create Container') {
+            steps {
+                sh '''
+                docker build --tag test:latest .
+                '''
+            }
+        }
+
+        stage ('Scan Container') {
+            steps {
+                sh '''
+                grype test:latest --scope AllLayers
+                '''
+            }
+        }
+
+
+
+    }
+}
