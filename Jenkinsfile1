@@ -40,13 +40,6 @@ pipeline {
  //      }
  //    }
 
-        stage ('Delete Container') {
-            steps {
-                sh '''
-                docker rmi test:latest
-                '''
-            }
-        }
 
         stage ('Create Container') {
             steps {
