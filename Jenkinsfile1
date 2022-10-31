@@ -1,9 +1,9 @@
 pipeline {
     agent any
-   // tools {
-       // maven 'Maven 3.8.6'
+    tools {
+        maven 'Maven 3.8.6'
         //jdk 'jdk19'
-   // }
+    }
 
 	environment {
 		CredentialsId="d1cdcc3d-8ee2-4906-94f8-d76998ec48b7"
